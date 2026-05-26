@@ -29,6 +29,13 @@ public class BfhlControllerTest {
     }
 
     @Test
+    public void testHealthEndpoint() throws Exception {
+        mockMvc.perform(get("/health"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.status", is("healthy")));
+    }
+
+    @Test
     public void testGetEndpoint() throws Exception {
         mockMvc.perform(get("/bfhl"))
                 .andExpect(status().isOk())
